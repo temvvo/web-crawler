@@ -1,0 +1,10 @@
+rootProject.name = 'web-crawler'
+include ':config'
+include ':domain'
+include ':usecase'
+include ':file-crawler'
+include ':crawler-app'
+project(":file-crawler").projectDir = file("adapter/file-crawler/html")
+project(":crawler-app").projectDir = file("application")
+
+

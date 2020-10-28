@@ -1,0 +1,16 @@
+apply plugin: 'java-library'
+ext.moduleName = 'crawler.app.usecase'
+
+
+dependencies {
+    implementation(
+            project(':domain'),
+            'org.apache.commons:commons-lang3:3.7'
+    )
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testImplementation 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+}
