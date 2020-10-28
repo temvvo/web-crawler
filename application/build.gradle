@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'java-library'
+    id 'application'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+}
+
+ext.moduleName = 'crawler.app.main'
+
+
+dependencies {
+    implementation 'junit:junit:4.12'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation(
+            project(':config'),
+            project(':domain'),
+            project(':usecase'),
+    )
+}
+
+mainClassName = 'com.crawler.app.Main'
+
+
+jar {
+    manifest {
+        attributes "Main-Class": "com.crawler.app.Main"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+shadowJar {
+    classifier = 'fat'
+}
+runShadow {
+    main='com.crawler.app.Main'
+}
