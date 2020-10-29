@@ -6,5 +6,4 @@ module crawler.app.usecase {
 	requires static lombok;
 	requires crawler.app.domain;
 	requires org.apache.commons.lang3;
-	requires rt;
 }

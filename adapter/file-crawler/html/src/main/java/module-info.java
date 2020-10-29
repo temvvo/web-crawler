@@ -8,5 +8,4 @@ module crawler.app.port {
 	requires org.jsoup;
 	requires java.string.similarity;
 	requires static lombok;
-    requires rt;
 }
