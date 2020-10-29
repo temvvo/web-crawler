@@ -1,6 +1,7 @@
 package com.crawler.app.domain.entity;
 
 public interface HtmlElement {
-	public String getAllAtributesSplitted();
-	public String getTagName();
+    public String getAllAtributesSplitted();
+    public String getTagName();
+    public String getElementPath();
 }

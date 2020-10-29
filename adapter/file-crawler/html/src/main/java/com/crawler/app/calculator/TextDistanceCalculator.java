@@ -17,10 +17,10 @@ public class TextDistanceCalculator {
 			Element similarElement = null;
 		};
 
-		targetElements.forEach(element-> {
+		targetElements.forEach(element -> {
 			double compareDistance = nsd.distance(
-				source,
-				element.attributes().toString()
+					source,
+					element.attributes().toString()
 			);
 			if (compareDistance < wrapper.minDistance) {
 				wrapper.minDistance = compareDistance;

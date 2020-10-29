@@ -12,13 +12,15 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class FindElement {
 
+	//TODO: Use properties @default from configuration properties file
+	final String DEFAULT_TARGET_ELEMENT_ID = "make-everything-ok-button";
 	private final TextCrawlerPort textCrawlerPort;
-	//private final UserInput userInput;
+
 
 	public HtmlElement findInOrigin(String id, String path) {
 
 		try {
-			return textCrawlerPort.findInOrigin(id,path);
+			return textCrawlerPort.findInOrigin(id, path);
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -30,7 +32,7 @@ public class FindElement {
 	public HtmlElement findInTarget(HtmlElement element, String path) {
 
 		try {
-			return textCrawlerPort.findInTarget(element,path);
+			return textCrawlerPort.findInTarget(element, path);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -38,13 +40,13 @@ public class FindElement {
 	}
 
 	public Input CreateUserInput(String[] args) {
-		//TODO: Use properties @default from configuration properties file
-		final String DEFAULT_TARGET_ELEMENT_ID = "make-everything-ok-button";
+
 
 		InputValidator.validateInput(args);
-		if(args.length > 2) {
+		if (args.length > 2) {
 			return Input.builder().originFilePath(args[0]).sampleFilePath(args[1]).originalElementId(args[2]).build();
 		}
-		return Input.builder().originFilePath(args[0]).sampleFilePath(args[1]).originalElementId(DEFAULT_TARGET_ELEMENT_ID).build();
+		return Input.builder().originFilePath(args[0]).sampleFilePath(args[1])
+				.originalElementId(DEFAULT_TARGET_ELEMENT_ID).build();
 	}
 }

@@ -6,8 +6,7 @@ import lombok.Value;
 
 @Value
 @Builder
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class HtmlButton implements HtmlElement {
-	public String id,allAtributesSplitted, tagName;
-
+	public String id, allAtributesSplitted, tagName, elementPath;
 }

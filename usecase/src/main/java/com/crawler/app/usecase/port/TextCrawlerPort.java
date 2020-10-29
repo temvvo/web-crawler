@@ -1,7 +1,6 @@
 package com.crawler.app.usecase.port;
 
 
-
 import com.crawler.app.domain.entity.HtmlElement;
 
 import java.io.IOException;

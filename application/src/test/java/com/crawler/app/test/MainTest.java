@@ -11,13 +11,14 @@ import static junit.framework.TestCase.assertEquals;
 
 public class MainTest {
 
-    FindElement useCase ;
+    FindElement useCase;
     static final String SOURCE = "src/test/resources/sample-0-origin.html";
     static final String ELEMENT_ID = "make-everything-ok-button";
+
     // Setup
     @Before
-    public void configuration(){
-        var config = new  AppConfig();
+    public void configuration() {
+        var config = new AppConfig();
         useCase = config.getUseCase();
     }
 
@@ -54,6 +55,7 @@ public class MainTest {
         var foundElement = useCase.findInTarget(element, userInput.getSampleFilePath());
         assertEquals(expectedResult2, foundElement.getAllAtributesSplitted());
     }
+
     @Test
     public void testWithSample3() throws IOException {
         var expectedResult3 = "<a class=\"btn btn-success\" href=\"#ok\" title=\"Do-Link\" rel=\"next\" onclick=\"javascript:window.okDone(); return false;\"> Do anything perfect </a>";
@@ -98,7 +100,7 @@ public class MainTest {
 
 
         // Create User Input domain object
-        var userInput = useCase.CreateUserInput(new String[]{SOURCE, target1,ELEMENT_ID});
+        var userInput = useCase.CreateUserInput(new String[]{SOURCE, target1, ELEMENT_ID});
 
         // Get element by id
         var element = useCase.findInOrigin(userInput.getOriginalElementId(), userInput.getOriginFilePath());
@@ -108,5 +110,4 @@ public class MainTest {
         var foundElement = useCase.findInTarget(element, userInput.getSampleFilePath());
         assertEquals(expectedResult1, foundElement.getAllAtributesSplitted());
     }
-
 }

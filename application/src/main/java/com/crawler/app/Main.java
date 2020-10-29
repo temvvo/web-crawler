@@ -1,6 +1,5 @@
 package com.crawler.app;
 
-
 import com.crawler.config.AppConfig;
 
 public class Main {

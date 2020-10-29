@@ -10,7 +10,6 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.util.List;
 
-//@RequiredArgsConstructor
 public class HtmlFileCrawlerPort implements TextCrawlerPort {
     private HtmlParser parser;
     private TextDistanceCalculator tdc;
@@ -23,17 +22,12 @@ public class HtmlFileCrawlerPort implements TextCrawlerPort {
 
     @Override
     public HtmlElement findInOrigin(String id, String path) throws IOException {
-        return elementMapper.map(parser.getElementById(id, path));
+        return elementMapper.mapSource(parser.getElementById(id, path));
     }
 
     @Override
     public HtmlElement findInTarget(HtmlElement element, String path) throws IOException {
         List<Element> sameTagElements = parser.getElementsInTag(path, element.getTagName());
-
-
-        return elementMapper.map(tdc.findSimilarElement(element.getAllAtributesSplitted(), sameTagElements));
-
+         return elementMapper.mapTarget(tdc.findSimilarElement(element.getAllAtributesSplitted(), sameTagElements));
     }
-
-
 }

@@ -10,8 +10,15 @@ public class ElementMapper {
 	//@Mapping(expression = "java( String.valueOf(source) )", target = "allAtributesSplitted")
 	//@Mapping(expression = "java( source.toString())", target = "allAtributesSplitted")
 	//TODO: solve mapping using mapstruct
-	public static HtmlButton map(Element element) {
-		return HtmlButton.builder().allAtributesSplitted(element.toString()).id(element.id()).tagName(element.tagName()).elementPath(fillPathDecorator(element)).build();
+	public static HtmlButton mapTarget(Element element) {
+		return HtmlButton.builder().allAtributesSplitted(element.toString()).id(element.id()).tagName(element.tagName())
+				.elementPath(fillPathDecorator(element)).build();
+	}
+
+	public static HtmlButton mapSource(Element element) {
+
+		return HtmlButton.builder().allAtributesSplitted(element.toString()).id(element.id()).tagName(element.tagName())
+				.build();
 	}
 
 	private static String fillPathDecorator(Element element) {
@@ -30,10 +37,10 @@ public class ElementMapper {
 	private static void fill(StringBuilder decorator, Element element) {
 		decorator.append(" ");
 		decorator.append(element.tag());
-		if (null != element.id() && 0 < element.id().length() ) {
+		if (null != element.id() && 0 < element.id().length()) {
 			decorator.append("#");
 			decorator.append(element.id());
-		}else if(null != element.className() && 0 < element.className().length()){
+		} else if (null != element.className() && 0 < element.className().length()) {
 			decorator.append(".");
 			decorator.append(element.className());
 		}
