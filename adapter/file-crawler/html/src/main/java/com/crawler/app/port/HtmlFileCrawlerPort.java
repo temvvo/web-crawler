@@ -12,29 +12,28 @@ import java.util.List;
 
 //@RequiredArgsConstructor
 public class HtmlFileCrawlerPort implements TextCrawlerPort {
-	private HtmlParser parser;
-	private TextDistanceCalculator tdc;
-	private ElementMapper elementMapper;
+    private HtmlParser parser;
+    private TextDistanceCalculator tdc;
+    private ElementMapper elementMapper;
 
-	public HtmlFileCrawlerPort(HtmlParser parser, TextDistanceCalculator tdc) {
-		this.parser = parser;
-		this.tdc = tdc;
-	}
+    public HtmlFileCrawlerPort(HtmlParser parser, TextDistanceCalculator tdc) {
+        this.parser = parser;
+        this.tdc = tdc;
+    }
 
-	@Override
-	public HtmlElement findInOrigin(String id, String path) throws IOException {
-		return elementMapper.map(parser.getElementById(id, path));
-	}
+    @Override
+    public HtmlElement findInOrigin(String id, String path) throws IOException {
+        return elementMapper.map(parser.getElementById(id, path));
+    }
 
-	@Override
-	public HtmlElement findInTarget(HtmlElement element, String path) throws IOException {
-		List<Element> sameTagElements = parser.getElementsInTag(path, element.getTagName());
+    @Override
+    public HtmlElement findInTarget(HtmlElement element, String path) throws IOException {
+        List<Element> sameTagElements = parser.getElementsInTag(path, element.getTagName());
 
-		//String originAllAttrs = element.getAllAtributesSplitted();
-		return elementMapper.map(tdc.findSimilarElement(element.getAllAtributesSplitted(), sameTagElements));
 
-	}
+        return elementMapper.map(tdc.findSimilarElement(element.getAllAtributesSplitted(), sameTagElements));
 
+    }
 
 
 }
