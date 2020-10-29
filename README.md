@@ -26,7 +26,7 @@ Run with ElementId:
 Run without ElementId (default id will be used):
 `java -jar application/build/libs/crawler-app-1.0.0-fat.jar application/src/test/resources/sample-0-origin.html application/src/test/resources/sample-3-the-escape.html`
 
-### Run application examples:
+### Output example:
 
 `Origin - Element: <a id="make-everything-ok-button" class="btn btn-success" href="#ok" title="Make-Button" rel="next" onclick="javascript:window.okDone(); return false;"> Make everything OK </a>`
 
