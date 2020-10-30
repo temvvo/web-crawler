@@ -2,6 +2,7 @@ package com.crawler.app.test;
 
 import com.crawler.app.usecase.FindElement;
 import com.crawler.config.AppConfig;
+import com.crawler.config.ConfigurationProperties;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,13 +13,19 @@ import static junit.framework.TestCase.assertEquals;
 public class MainTest {
 
     FindElement useCase;
+    AppConfig config;
+
     static final String SOURCE = "src/test/resources/sample-0-origin.html";
     static final String ELEMENT_ID = "make-everything-ok-button";
+    static final String CHARSET = "utf8";
+    static final double MIN_DIST = 1.0F;
 
     // Setup
     @Before
     public void configuration() {
-        var config = new AppConfig();
+
+        config = AppConfig.builder().props(ConfigurationProperties.builder().charset(CHARSET)
+                .elementId(ELEMENT_ID).minDist(MIN_DIST).build()).build();
         useCase = config.getUseCase();
     }
 
@@ -28,7 +35,7 @@ public class MainTest {
         var target1 = "src/test/resources/sample-1-evil-gemini.html";
 
         // Create User Input domain object
-        var userInput = useCase.CreateUserInput(new String[]{SOURCE, target1});
+        var userInput = config.createUserInput(new String[]{SOURCE, target1});
 
         // Get element by id
         var element = useCase.findInOrigin(userInput.getOriginalElementId(), userInput.getOriginFilePath());
@@ -45,7 +52,7 @@ public class MainTest {
         var target2 = "src/test/resources/sample-2-container-and-clone.html";
 
         // Create User Input domain object
-        var userInput = useCase.CreateUserInput(new String[]{SOURCE, target2});
+        var userInput = config.createUserInput(new String[]{SOURCE, target2});
 
         // Get element by id
         var element = useCase.findInOrigin(userInput.getOriginalElementId(), userInput.getOriginFilePath());
@@ -62,7 +69,7 @@ public class MainTest {
         var target3 = "src/test/resources/sample-3-the-escape.html";
 
         // Create User Input domain object
-        var userInput = useCase.CreateUserInput(new String[]{SOURCE, target3});
+        var userInput = config.createUserInput(new String[]{SOURCE, target3});
 
         // Get element by id
         var element = useCase.findInOrigin(userInput.getOriginalElementId(), userInput.getOriginFilePath());
@@ -79,7 +86,7 @@ public class MainTest {
         var target4 = "src/test/resources/sample-4-the-mash.html";
 
         // Create User Input domain object
-        var userInput = useCase.CreateUserInput(new String[]{SOURCE, target4});
+        var userInput = config.createUserInput(new String[]{SOURCE, target4});
 
 
         // Get element by id
@@ -100,7 +107,7 @@ public class MainTest {
 
 
         // Create User Input domain object
-        var userInput = useCase.CreateUserInput(new String[]{SOURCE, target1, ELEMENT_ID});
+        var userInput = config.createUserInput(new String[]{SOURCE, target1, ELEMENT_ID});
 
         // Get element by id
         var element = useCase.findInOrigin(userInput.getOriginalElementId(), userInput.getOriginFilePath());

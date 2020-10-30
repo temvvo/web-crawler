@@ -1,15 +1,23 @@
 package com.crawler.app;
 
 import com.crawler.config.AppConfig;
+import com.crawler.config.ConfigurationProperties;
 
 public class Main {
 	public static void main(String[] args) {
+		final String ELEMENT_ID = "make-everything-ok-button";
+		final String CHARSET = "utf8";
+	    final double MIN_DIST = 1.0F;
 		// Setup
-		var config = new AppConfig();
+
+		var  config = AppConfig.builder().props(ConfigurationProperties.builder().charset(CHARSET)
+				.elementId(ELEMENT_ID).minDist(MIN_DIST).build()).build();
+
+
 		var findElement = config.getUseCase();
 
-		// Create User Input domain object
-		var userInput = findElement.CreateUserInput(args);
+		// Create User Input
+		var userInput = config.createUserInput(args);
 
 		// Get element by id
 		var element = findElement.findInOrigin(userInput.getOriginalElementId()

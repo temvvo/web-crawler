@@ -1,0 +1,9 @@
+crawler:
+  config:
+    elementId: make-everything-ok-button
+---
+spring:
+  profiles: dev
+crawler:
+  config:
+    elementId: make-everything-ok-button

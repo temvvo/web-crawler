@@ -3,4 +3,5 @@ module crawler.app.config {
 	requires crawler.app.port;
 	requires crawler.app.usecase;
 	requires crawler.app.domain;
+	requires static lombok;
 }

@@ -1,6 +1,6 @@
-package com.crawler.app.usecase.validator;
+package com.crawler.validator;
 
-import com.crawler.app.usecase.exception.InputValidationException;
+import com.crawler.exception.InputValidationException;
 
 public class InputValidator {
 
